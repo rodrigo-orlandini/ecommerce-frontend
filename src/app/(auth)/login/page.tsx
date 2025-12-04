@@ -52,7 +52,7 @@ export default function Login() {
 
       toast.success('Login realizado com sucesso!');
 
-      router.replace('/home');
+      router.replace('/products');
     } catch (error: any) {
       const errorMessage =
         error?.response?.data?.message ||
