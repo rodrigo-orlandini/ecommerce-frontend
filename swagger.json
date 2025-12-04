@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/admin/login": {
+      "post": {
+        "operationId": "loginAdmin",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginAdminRequestDto"
+              },
+              "examples": {
+                "data": {
+                  "value": {
+                    "email": "admin@example.com",
+                    "password": "senha123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginAdminResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Credenciais inválidas"
+          },
+          "500": {
+            "description": "Erro interno do sistema"
+          }
+        },
+        "summary": "Login de administrador",
+        "tags": [
+          "authentication"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "API Ecommerce",
+    "description": "API do sistema de e-commerce",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "authentication",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "LoginAdminRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email do administrador",
+            "example": "admin@example.com",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do administrador",
+            "example": "senha123",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "LoginAdminResponseDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token JWT para autenticação",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1NiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxNjIzOTAyMn0.example_signature"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      }
+    }
+  }
+}
