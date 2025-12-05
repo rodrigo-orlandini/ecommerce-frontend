@@ -46,6 +46,52 @@
           "authentication"
         ]
       }
+    },
+    "/brands": {
+      "post": {
+        "operationId": "createBrand",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBrandRequestDto"
+              },
+              "examples": {
+                "data": {
+                  "value": {
+                    "name": "Brand Name",
+                    "description": "Brand Description"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Marca criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBrandResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Usuário não autorizado"
+          },
+          "500": {
+            "description": "Erro interno do sistema"
+          }
+        },
+        "summary": "Criar uma nova marca",
+        "tags": [
+          "brands"
+        ]
+      }
     }
   },
   "info": {
@@ -96,6 +142,30 @@
         "required": [
           "token"
         ]
+      },
+      "CreateBrandRequestDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome da marca",
+            "example": "Brand Name",
+            "format": "text"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição da marca",
+            "example": "Brand Description",
+            "format": "text"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CreateBrandResponseDto": {
+        "type": "object",
+        "properties": {}
       }
     }
   }
